@@ -1,9 +1,9 @@
 // 1.
 let nums = [10, 3, 7, 20, 13, 2];
-
+// map
 let squares=nums.map(n=>n*n);
 console.log("squares",squares);
-
+// filter
 function isPrime(n){
     if(n<2)
         return false;
@@ -14,10 +14,10 @@ function isPrime(n){
 }
 let primes=nums.filter(isPrime);
 console.log("primes",primes);
-
+// reduce
 let sum=nums.reduce((acc,curr)=>acc+curr, 0);
 console.log("sum",sum);
-
+// sort
 let descending = nums.slice().sort((a,b)=>b-a);
 console.log("descnding order",descending);
 // 2

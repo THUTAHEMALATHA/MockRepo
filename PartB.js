@@ -1,4 +1,4 @@
-// 1.
+// 8.
 let nums = [10, 3, 7, 20, 13, 2];
 // map
 let squares=nums.map(n=>n*n);
@@ -20,7 +20,9 @@ console.log("sum",sum);
 // sort
 let descending = nums.slice().sort((a,b)=>b-a);
 console.log("descnding order",descending);
-// 2
+
+
+// 9
 function displayCar(){
     console.log("car detailes displayed");
 }

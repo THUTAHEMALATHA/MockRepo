@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Book Management App</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <script type="module" src="index1.js"></script>
+</head>
+<body>
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Add / Edit Book</h2>
+      <form id="book-form">
+        <input type="hidden" id="book-id" />
+        <label>Title</label>
+        <input type="text" id="title" required />
+         <button type="button" onclick="CreateData()">CreateDATA</button>
+
+        <label>Author</label>
+        <input type="text" id="author" required />
+         <button type="button" onclick="GetData()">GetDATA</button>
+
+        <label>Price</label>
+        <input type="number" id="price" required />
+         <button type="button" onclick="UpdateData()">UpdataDATA</button>
+
+        <label>Cover Image URL</label>
+        <input type="url" id="cover" required />
+         <button type="button" onclick="DeleteData()">DeleteDATA</button>
+
+        <button type="submit">Save Book</button>
+        <button type="button" id="reset-form">Clear Form</button>
+      </form>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+      <h1>Book Management Web App</h1>
+      <div id="books-container" class="cards"></div>
+    </main>
+  </div>
+  
+</body>
+</html>

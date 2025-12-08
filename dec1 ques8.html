@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Todo App</title>
+</head>
+<body>
+  <button id="load-todos">Load Todos</button>
+  <div id="todo-container"></div>
+
+  <script>
+    const TODO_KEY = "masai_todos";
+    const URL = "https://jsonplaceholder.typicode.com/todos";
+
+    const loadBtn = document.getElementById("load-todos");
+    const container = document.getElementById("todo-container");
+
+    loadBtn.addEventListener("click", fetchAndStoreTodos);
+
+    function fetchAndStoreTodos() {
+      fetch(URL)
+        .then(res => res.json())
+        .then(data => {
+          const firstTwenty = data.slice(0, 20);
+          localStorage.setItem(TODO_KEY, JSON.stringify(firstTwenty));
+          renderTodos();
+        })
+        .catch(err => console.error(err));
+    }
+
+    function getTodosFromStorage() {
+      const stored = localStorage.getItem(TODO_KEY);
+      return stored ? JSON.parse(stored) : [];
+    }
+
+    function renderTodos() {
+      const todos = getTodosFromStorage();
+      container.innerHTML = "";
+
+      todos.forEach(todo => {
+        const card = document.createElement("div");
+        card.style.border = "1px solid #ccc";
+        card.style.margin = "8px";
+        card.style.padding = "8px";
+
+        const title = document.createElement("p");
+        title.textContent = todo.title;
+
+        const status = document.createElement("p");
+        status.textContent = "Completed: " + (todo.completed ? "Yes" : "No");
+
+        const delBtn = document.createElement("button");
+        delBtn.textContent = "Delete";
+        delBtn.addEventListener("click", () => deleteTodo(todo.id));
+
+        card.appendChild(title);
+        card.appendChild(status);
+        card.appendChild(delBtn);
+        container.appendChild(card);
+      });
+    }
+
+    function deleteTodo(id) {
+      let todos = getTodosFromStorage();
+      todos = todos.filter(todo => todo.id !== id);
+      localStorage.setItem(TODO_KEY, JSON.stringify(todos));
+      renderTodos();
+    }
+
+    // Render on initial load from localStorage
+    renderTodos();
+  </script>
+</body>
+</html>
